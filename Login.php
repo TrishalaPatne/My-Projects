@@ -3,14 +3,14 @@
 	$userEmail= $_GET["email"];
 	$userPassword = $_GET["pwd"];
 	
-	echo $userEmail;
+	//echo $userEmail;
 	//echo $userPassword;
 	
 	
 	$user = "maks527";
 	$host = "localhost";
 	$db = "test";
-	$sql = "Select username from UserProfiles_maks527 where Email='$userEmail' and Password='$userPassword'";
+	$sql = "Select username from test1 where Email='$userEmail' and Password='$userPassword'";
 	
 	mysql_connect($host, $user);
 	mysql_select_db($db);

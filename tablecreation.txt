@@ -1,0 +1,21 @@
+
+mysql -u maks527 test -e "create table test1( 
+     UserId int not null auto_increment primary key,
+     username  varchar(20) not null, 
+     Password  varchar(20) not null, 
+    DateOFBirth Date,
+    DisplayName  varchar(20) not null, 
+    IndOrBusnot  varchar(20) null, 
+    Gender varchar(10),
+    Email varchar(50), 
+    City varchar(30), 
+    State varchar(20), 
+    Country varchar (20),
+    RelStatus varchar(20), 
+    PubOrPri varchar(20) not null);
+
+
+insert into UserProfiles_maks527 
+(username,Password, DisplayName , IndOrBusnot, Email, City, State, RelStatus, PubOrPri, Admin)
+values
+('tapatne', 'qwer', 'Trishala', 1, 'tapatne@uark.edu', 'fayetteville', 'Ar', 'Married', 1, 2);

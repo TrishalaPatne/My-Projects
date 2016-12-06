@@ -16,72 +16,77 @@
 					<label>Username</label>
 					<input type="text" name="UsernameInput" class="form-control" id="UsernameInput" value="">
 				</div>
-<!--
+
 				
 				<div class="form-group">
 					<label>Password</label>
-					<input type="password" name="" class="form-control" id="" value="">
+					<input type="password" name="PasswordInput" class="form-control" id="" value="">
 				</div>
 
 				
 				<div class="form-group">
 					<label>Display Name</label>
-					<input type="password" name="" class="form-control" id="" value="">
+					<input type="text" name="DisplayNameInput" class="form-control" id="" value="">
 				</div>
 				
 				<div class="form-group">
                 <label class="form-label">Date of Birth</label>  
-                <input id="Dateofbirth" class="form-control" type="date" name="Dateofbirth">				
+                <input id="Dateofbirth" class="form-control" type="date" name="DateofbirthInput">				
                 </div>  
 							
 				<div class="form-group">
 					<label>Is this an individual account &nbsp; &nbsp;</label> 
-					<input type="radio" name="indorbus"> 
+					<input type="radio" name="indorbusInput" value="ind"> 
 					<label>&nbsp; &nbsp; or a Business account &nbsp; &nbsp; </label>
-					<input type="radio" name="indorbus">
+					<input type="radio" name="indorbusInput" value="bus">
 				</div>
 				
 				<div class="form-group">
 				<label>Do you wish your profile / tweets to be Public &nbsp; &nbsp; </label> 
-				<input type="radio" name="puborpri">
+				<input type="radio" name="puborpriInput" value="Pri">
 				<label>&nbsp; &nbsp; or Private &nbsp; &nbsp;  </label>
-				<input type="radio" name="puborpri">
+				<input type="radio" name="puborpriInput" value="Pub">
 				</div>
 			
 				
 				<div class="form-group">
                  <label class="form-label" for="selectbasic">Gender</label>
-                    <select id="selectbasic" name="selectbasic" class="form-control">
+                    <select id="selectbasic" name="genderInput" class="form-control">
 					<option>Select</option>
-                        <option>Male</option>
-                       <option>Female</option>
-                        <option>Other</option>
+                        <option value="M">Male</option>
+                       <option value="F">Female</option>
+                        <option value="O">Other</option>
                            </select>
                  </div>
 
                  <div class="form-group">
-					<label>Relationship Status</label>
-					<input type="" name="" class="form-control" id="" value="">
+					<label class="form-label" for="selectbasic">Relationship Status</label>
+                    <select id="selectbasic" name="relstatInput" class="form-control">
+					<option>Select</option>
+                        <option value="Married">Married</option>
+                       <option value="Commited">Commited</option>
+                        <option value="Single">Single</option>
+                           </select>
 				</div>				
 								
 				<div class="form-group">
 					<label>Email Address</label>
-					<input type="" name="" class="form-control" id="" value="">
+					<input type="email" name="emailInput" class="form-control" id="" value="">
 				</div>
 				
 				<div class="form-group">
 					<label>City</label>
-					<input type="" name="" class="form-control" id="" value="">
+					<input type="text" name="cityInput" class="form-control" id="" value="">
 				</div>
 				
 				<div class="form-group">
 					<label>State</label>
-					<input type="" name="" class="form-control" id="" value="">
+					<input type="text" name="stateInput" class="form-control" id="" value="">
 				</div>
 
 				<div class="form-group">
                     <label class="form-label" for="selectbasic">Country</label>
-                        <select id="selectbasic" name="selectbasic" class="form-control">
+                        <select id="selectbasic" name="countryInput" class="form-control">
                             <option value="">Select a country</option>
                             <option value="AF">Afghanistan</option>
                             <option value="AL">Albania</option>
@@ -324,7 +329,7 @@
                             <option value="ZW">Zimbabwe</option>
                         </select>
 				</div>
-						-->
+						-
 
 				<br>
 				<div class="form-group">
