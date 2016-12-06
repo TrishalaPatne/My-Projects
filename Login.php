@@ -3,7 +3,7 @@
 	$userEmail= $_GET["email"];
 	$userPassword = $_GET["pwd"];
 	
-	//echo $userEmail;
+	echo $userEmail;
 	//echo $userPassword;
 	
 	
