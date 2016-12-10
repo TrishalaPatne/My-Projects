@@ -3,10 +3,170 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+  p {text-align:center;}
+  h2 {text-align:center;}
+  
+  .navbar-inner {
+    /*height: 90px*/
+    min-height: 60px
+    }
+
+ .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+color: blue;  /*Sets the text hover color on navbar*/
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active >   
+ a:hover, .navbar-default .navbar-nav > .active > a:focus {
+color: white; /*BACKGROUND color for active*/
+background-color: #0080ff;
+}
+
+  .navbar-default {
+    background-color: #00bfff;
+    border-color: #00bfff;
+}
+
+  .dropdown-menu > li > a:hover,
+   .dropdown-menu > li > a:focus {
+    color: white;
+   text-decoration: none;
+  background-color: #66CCFF;  /*change color of links in drop down here*/
+   }
+
+ .nav > li > a:hover,
+ .nav > li > a:focus {
+    text-decoration: none;
+    background-color: silver; /*Change rollover cell color here*/
+  }
+
+
+  .navbar-default .navbar-nav > li > a {
+   color: #000000; /*Change active text color here*/
+    }
+
+		   
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 100%;
+      margin: auto;
+  }
+  
+  .imagerestrict {
+	  max-width: 1140px;
+	  max-height: 371px;
+  }
+  
+  p {text-align:center;}
+  .ads
+  {
+  right: 25px;
+  position: absolute;
+  top: 150px;
+  width: 200px;
+  height: 630px;
+  }
+  </style>
+
+<script language="JavaScript1.2">
+
+var howOften = 6; //number often in seconds to rotate
+var howOften2 = 6;
+var howOften3 = 6;
+var current = 0; //start the counter at 0
+var current2 = 3;
+var current3 = 5;
+var ns6 = document.getElementById&&!document.all; //detect netscape 6
+
+// place your images, text, etc in the array elements here
+var items = new Array();
+    items[0]="<a href='http://onf.coop/' ><img alt='image0 (9K)' src='Ozark.png' height='200' width='200' border='0' /></a>"; //a linked image
+    items[1]="<a href='http://www.thefarmerstablecafe.com/'><img alt='image1 (9K)' src='Farmerstable.png' height='200' width='200' border='0' /></a>"; //a linked image
+    items[2]="<a href='http://arsagas.com/'><img alt='image2 (9K)' src='Arsagas.png' height='200' width='200' border='0' /></a>"; //a linked image
+	items[3]="<a href='http://www.nwaescaperoom.com/'><img alt='image3 (9K)' src='Escaperoom.png' height='200' width='200' border='0' /></a>"; //a linked image
+    items[4]="<a href='https://khanaindiangrill.com/'><img alt='image4 (9K)' src='Khana.png' height='200' width='200' border='0' /></a>"; //a linked image
+    items[5]="<a href='http://stonemillbread.net/'><img alt='image5 (18K)' src='Stonemill.png' height='200' width='200' border='0' /></a>"; //a linked image
+	items[6]="<a href='http://puritancoffeebeer.com/'><img alt='image4 (9K)' src='Puritan.png' height='200' width='200' border='0' /></a>"; //a linked image
+    items[7]="<a href='https://www.fayettechill.com/'><img alt='image5 (18K)' src='Fayettechill.png' height='200' width='200' border='0' /></a>"; //a linked image
+	
+   
+function rotater() {
+    if(document.layers) {
+        document.placeholderlayer.document.write(items[current]);
+        document.placeholderlayer.document.close();
+    }
+    if(ns6)document.getElementById("placeholderdiv").innerHTML=items[current]
+        if(document.all)
+            placeholderdiv.innerHTML=items[current];
+
+    current = (current==items.length-1) ? 0 : current + 1; //increment or reset
+    setTimeout("rotater()",howOften*1000);
+}
+
+function rotater2() {
+	if(document.layers) {
+        document.placeholderlayer2.document.write(items[current2]);
+        document.placeholderlayer2.document.close();
+    }
+    if(ns6)document.getElementById("placeholderdiv2").innerHTML=items[current2]
+        if(document.all)
+            placeholderdiv2.innerHTML=items[current2];
+
+    current2 = (current2==items.length-1) ? 0 : current2 + 1; //increment or reset
+    setTimeout("rotater2()",howOften2*1000);
+}
+
+function rotater3() {
+	if(document.layers) {
+        document.placeholderlayer3.document.write(items[current3]);
+        document.placeholderlayer3.document.close();
+    }
+    if(ns6)document.getElementById("placeholderdiv3").innerHTML=items[current3]
+        if(document.all)
+            placeholderdiv3.innerHTML=items[current2];
+
+    current3 = (current3==items.length-1) ? 0 : current3 + 1; //increment or reset
+    setTimeout("rotater3()",howOften3*1000);
+}
+
+function rotaterall() {
+	rotater();
+	rotater2();
+	rotater3();
+	}
+
+
+window.onload=rotaterall;
+
+function small_window{
+	var myWindow = window.open("", "myWindow", "width=200,height=100");   // Opens a new window
+myWindow.document.write("<input type="file"></input>");
+echo "sub";
+}
+
+
+</script>
 </head>
+<body>
+
+<nav class="navbar navbar-default navbar-backgrnd">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     <a class="navbar-brand" href="#">UA TWEETBOOK</a> 
+	<!-- <img class="navbar-brand pull-left" src="./uarklogo.jpeg" width=auto height="100"> -->
+	</div>
+	  <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home <span class="sr-only">(current)</span></a></li>
+        <li><a href="Aboutus.php">About Us</a></li>
+	 </ul>
+	    <ul class="nav navbar-nav navbar-right">
+	</ul>
+	</div>
+</nav>
 
 <div class="container">	
- <form  action="./Registration.php">	
+ <form  method="post" action="./Registration.php" enctype="multipart/form-data">	
     <div class="row">	
 			<div class="col-md-6 col-md-offset-3">
 				<h3>Registration</h3>
@@ -14,36 +174,36 @@
 			
 				<div class="form-group">
 					<label>Username</label>
-					<input type="text" name="UsernameInput" class="form-control" id="UsernameInput" value="">
+					<input type="text" name="UsernameInput" class="form-control" id="UsernameInput" value=""/>
 				</div>
 
 				
 				<div class="form-group">
 					<label>Password</label>
-					<input type="password" name="PasswordInput" class="form-control" id="" value="">
+					<input type="password" name="PasswordInput" class="form-control" id="" value=""/>
 				</div>
 
 				
 				<div class="form-group">
 					<label>Display Name</label>
-					<input type="text" name="DisplayNameInput" class="form-control" id="" value="">
+					<input type="text" name="DisplayNameInput" class="form-control" id="" value=""/>
 				</div>
 				
 				<div class="form-group">
                 <label class="form-label">Date of Birth</label>  
-                <input id="Dateofbirth" class="form-control" type="date" name="DateofbirthInput">				
+                <input id="Dateofbirth" class="form-control" type="date" name="DateofbirthInput"/>				
                 </div>  
 							
 				<div class="form-group">
 					<label>Is this an individual account &nbsp; &nbsp;</label> 
-					<input type="radio" name="indorbusInput" value="ind"> 
+					<input type="radio" name="indorbusInput" value="ind"/> 
 					<label>&nbsp; &nbsp; or a Business account &nbsp; &nbsp; </label>
-					<input type="radio" name="indorbusInput" value="bus">
+					<input type="radio" name="indorbusInput" value="bus"/>
 				</div>
 				
 				<div class="form-group">
 				<label>Do you wish your profile / tweets to be Public &nbsp; &nbsp; </label> 
-				<input type="radio" name="puborpriInput" value="Pri">
+				<input type="radio" name="puborpriInput" value="Pri"/>
 				<label>&nbsp; &nbsp; or Private &nbsp; &nbsp;  </label>
 				<input type="radio" name="puborpriInput" value="Pub">
 				</div>
@@ -71,17 +231,17 @@
 								
 				<div class="form-group">
 					<label>Email Address</label>
-					<input type="email" name="emailInput" class="form-control" id="" value="">
+					<input type="email" name="emailInput" class="form-control" id="" value=""/>
 				</div>
 				
 				<div class="form-group">
 					<label>City</label>
-					<input type="text" name="cityInput" class="form-control" id="" value="">
+					<input type="text" name="cityInput" class="form-control" id="" value=""/>
 				</div>
 				
 				<div class="form-group">
 					<label>State</label>
-					<input type="text" name="stateInput" class="form-control" id="" value="">
+					<input type="text" name="stateInput" class="form-control" id="" value=""/>
 				</div>
 
 				<div class="form-group">
@@ -329,17 +489,28 @@
                             <option value="ZW">Zimbabwe</option>
                         </select>
 				</div>
-						-
-
+				<div>
+				<label class="form-label">Select Profile Picture</label>
+				<input type="file" name="fileToUpload"/>
+				</div>
+				<br>
 				<br>
 				<div class="form-group">
-				<button type="submit" class="btn btn-primary">Register</button> <br> <br>
-				<label>By clicking on Register you agree to give UA Tweetbook he right to delete, edit or add to all posted messages.If a profile includes offensive information, or if an individual or business makes offensive posts, UATweetbook will immediately delete the entire profile.</label>
+				<button type="submit" class="btn btn-primary" >Register</button> <br> <br>
+				<label>By clicking on Register you agree to give UA Tweetbook the right to delete, edit or add to all posted messages. If a profile includes offensive information, or if an individual or business makes offensive posts, UATweetbook will immediately delete the entire profile.</label>
 				</div>
 			</div>
 				
 						    
         
 	 </div>	
+	 </form>
 </div>
-		   
+
+<div class="ads">
+<h3 class="dark-grey"><center>Support Local Fayetteville Businesses<center></h3><br>
+<layer id="placeholderlayer"></layer><div id="placeholderdiv"></div><br>
+<layer id="placeholderlayer2"></layer><div id="placeholderdiv2"></div><br>
+<layer id="placeholderlayer3"></layer><div id="placeholderdiv3"></div>
+</div>
+</body>
