@@ -5,13 +5,15 @@
 	$user = "maks527";
 	$host = "localhost";
 	$db = "test";
-	$sql = "insert into Messages (UserNameMessages,Message,Time) values ('$username','$MessageIn','0') ";
+	$sql = "insert into Messages (UserNameMessages,Message) values ('$username','$MessageIn') ";
 	
 	mysql_connect($host, $user);
 	mysql_select_db($db);
+	
+	if ($MessageIn != null)
+	{
 	mysql_query($sql);
-	mysql_connect($host, $user);
-	mysql_select_db($db);
+	}
 	
 	// save data from query
 	
@@ -37,7 +39,7 @@
 	$user = "maks527";
 	$host = "localhost";
 	$db = "test";
-	$sql = "select Message,Time from Messages where UserNameMessages='$username' order by Time desc";
+	$sql = "select MessagesId,Message,Time from Messages where UserNameMessages='$username' order by Time desc";
 	
 	mysql_connect($host, $user);
 	mysql_select_db($db);
@@ -55,9 +57,15 @@
 	while( $row = mysql_fetch_array($result) ) {
 	
 	echo "<h5>Post by ".$username. " on ". $row["Time"]. " </h5>";
-		 
+		
 			 echo $row["Message"] ;
-				echo "<hr/>";
+			 echo "<br/>";
+			?><a href="./editpost.php?MessageId=<?= $row["MessagesId"] ?> &Message=<?=$row["Message"]?>">Edit</a>
+			
+			<a href="./deletepost.php?MessageId=<?= $row["MessagesId"] ?>">Delete</a>
+			
+				<?php echo "<hr/>";
+				
 	}
 	
 	

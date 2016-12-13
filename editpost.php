@@ -1,4 +1,32 @@
-<!DOCTYPE html>
+<?php
+
+	$MessageIdIn = $_GET["MessageId"];
+	$MessageIn=$_GET["Message"];
+/*
+	$username= "Niharika";
+	
+	$user = "maks527";
+	$host = "localhost";
+	$db = "test";
+	$sql= "select Message from Messages where MessagesId=$MessageIdIn";
+	$sql = "delete from Messages where MessagesId=$MessageIdIn";
+	echo $MessageIdIn;
+	mysql_connect($host, $user);
+	mysql_select_db($db);
+	$result= mysql_query($sql);
+	$row = mysql_fetch_array($result);
+	$Message
+	mysql_connect($host, $user);
+	mysql_select_db($db);
+	//echo "Data Saved!";
+	mysql_close();
+	header( "Location:  MyWall.php" );*/
+	
+?>
+
+
+
+<<!DOCTYPE html>
 <html lang="en">
 <head>
  <title>MyPage</title>
@@ -7,31 +35,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script>
   
-  function getResults() {	
-var messageText = document.getElementById("messageTextId").value;
-			x = new XMLHttpRequest();
-			
-			x.onreadystatechange = function() {
-				
-				//if finished...
-				if ( x.readyState == 4 && x.status == 200 ) {
-					document.getElementById("recentPost").innerHTML = x.responseText;
-				}
-			}
-			
-			var url = "?";
-			var url = "MyWallPhp.php?MessageInput=" + messageText;
-			x.open("GET", url , true);
-			x.send();
-			
-			
-			//document.getElementById("mainResults").innerHTML = "<h1>" + name + " - " + pass + "</h1>";
-		}
-		getResults();
-		
-		</script>
 		<script>
  jQuery(document).ready(function() {
   var sideHeight = jQuery('.row').height();
@@ -137,7 +141,7 @@ function rotaterall() {
 
 
 window.onload=rotaterall;
-window.onload=getResults;
+
 
 
 </script>
@@ -166,21 +170,18 @@ window.onload=getResults;
 
     <div class="col-sm-6">
 	<br>
-	 <form role="form" method="get" enctype="multipart/form-data">
+	 <form role="form" method="get" action="editposthandle.php" enctype="multipart/form-data">
         <div class="form-group" >
-          <textarea class="form-control"  id="messageTextId" rows="3" required></textarea>
+          <textarea class="form-control"  name="messageText" value="<?= "$MessageIn" ?>" rows="3" required><?= "$MessageIn" ?></textarea>
+		  <input type="hidden" name="msgId" value="<?="$MessageIdIn"?>"/>
         </div>
-        <button type="button" onclick="getResults()" class="btn btn-success">Submit</button>
+        <button type="submit"  class="btn btn-success">Submit</button>
       </form>
 	  <br>
 	  <hr>
 	  <br>
 	  
-      <h4><small>RECENT POSTS</small></h4>
-      <hr>
-	  <div id="recentPost">
-	  &nbsp;
-	  </div>
+      
 	
 	
    <div class="col-sm-3 sidenav navbar-right">
