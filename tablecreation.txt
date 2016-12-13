@@ -19,3 +19,15 @@ insert into UserProfiles_maks527
 (username,Password, DisplayName , IndOrBusnot, Email, City, State, RelStatus, PubOrPri, Admin)
 values
 ('tapatne', 'qwer', 'Trishala', 1, 'tapatne@uark.edu', 'fayetteville', 'Ar', 'Married', 1, 2);
+
+creation script for massge table
+create table Messages( 
+MessagesId int not null auto_increment primary key, 
+UserNameMessages varchar(20), 
+Foreign key FK_UserNameMessages(UserNameMessages) references test2(Username), 
+Message varchar(140), 
+Time timestamp)
+
+insert into Messages (UserNameMessages,Message,Time) values
+
+('Niharika',' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat', '2008-01-01 00:00:01')

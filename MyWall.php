@@ -8,6 +8,33 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script>
+  function getResults() {
+	
+		
+var messageText = document.getElementById("messageTextId").value
+			x = new XMLHttpRequest();
+			
+			x.onreadystatechange = function() {
+				
+				//if finished...
+				if ( x.readyState == 4 && x.status == 200 ) {
+					document.getElementById("recentPost").innerHTML = x.responseText;
+				}
+			}
+			
+			var url = "?";
+			var url = "MyWallPhp.php?MessageInput=" + messageText;
+			alert(url);
+			x.open("GET", url , true);
+			x.send();
+			
+			
+			//document.getElementById("mainResults").innerHTML = "<h1>" + name + " - " + pass + "</h1>";
+		}
+		getResults();
+		
+		</script>
+		<script>
  jQuery(document).ready(function() {
   var sideHeight = jQuery('.row').height();
   jQuery('.content').css('height', sideHeight + 'px');
@@ -43,6 +70,8 @@
 
 <script language="JavaScript1.2">
 
+		
+		
 var howOften = 6; //number often in seconds to rotate
 var howOften2 = 6;
 var howOften3 = 6;
@@ -111,14 +140,14 @@ function rotaterall() {
 
 window.onload=rotaterall;
 
+
+
 </script>
 </head>
 <body>
 
 <div class="container-fluid">
- 
   <div class="row content">
-  <div class="clearfix visible-xs"></div>
     <div class="col-sm-3 sidenav">
       <h4>My TweetBook</h4>
       <ul class="nav nav-pills nav-stacked">
@@ -128,7 +157,7 @@ window.onload=rotaterall;
         <li><a href="MyWall.php">My Wall</a></li>
       </ul><br>
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search Posts by username/DisplayName"/>
+        <input type="text" class="form-control" placeholder="Search Posts by username/DisplayName">
         <span class="input-group-btn">
           <button class="btn btn-default" type="button">
             <span class="glyphicon glyphicon-search"></span>
@@ -138,48 +167,29 @@ window.onload=rotaterall;
     </div>
 
     <div class="col-sm-6">
-	<form  method="post" action="./MyHomePageP.php" enctype="multipart/form-data">
+	<br>
+	 <form role="form" method="get" enctype="multipart/form-data">
+        <div class="form-group" >
+          <textarea class="form-control"  id="messageTextId" rows="3" required></textarea>
+        </div>
+        <button type="button" onclick="getResults()" class="btn btn-success">Submit</button>
+      </form>
+	  <br>
+	  <hr>
+	  <br>
+	  
       <h4><small>RECENT POSTS</small></h4>
       <hr>
-      <h2>I Love Food</h2>
-          
-	  <?php
-	$username= "Niharika";
-	
-	$user = "maks527";
-	$host = "localhost";
-	$db = "test";
-	$sql = "select Message,Time from Messages where UserNameMessages='$username' order by Time desc";
-	
-	mysql_connect($host, $user);
-	mysql_select_db($db);
-	mysql_query($sql);
-	mysql_connect($host, $user);
-	mysql_select_db($db);
-	
-	// save data from query
-	$result = mysql_query($sql);
-	
-	// loop through data
-	
-	 
-	
-	while( $row = mysql_fetch_array($result) ) {
-	
-	echo "<h5>Post by ".$username. " on ". $row["Time"]. " </h5>";
-		 
-			 echo $row["Message"] ;
-				echo "<hr/>";
-	}
-	
-	
-	mysql_close();
-	
-	//echo "Data Saved!";
+	  <div id="recentPost">
+	  &nbsp;
+	  </div>
+	  <div>
 
-?>
-	</form>
-	</div>
+	  
+	  <hr>     
+      
+    </div>
+	
    <div class="col-sm-3 sidenav navbar-right">
    <div class="logout" style="float: right"><a href="#" class="btn btn-info btn-sm">
           <span class="glyphicon glyphicon-log-out"></span> Log out </a></div><br><br>
@@ -191,7 +201,7 @@ window.onload=rotaterall;
     </div>
   </div>
 </div>
-</form>
+
 
 
 
