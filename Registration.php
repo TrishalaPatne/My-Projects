@@ -1,5 +1,12 @@
 <?php
 
+	$user = "uateam03";
+	$host = "localhost";
+	$db = "uateam03";
+	$pass="uateam03";
+	mysql_connect($host, $user, $pass);
+	mysql_select_db($db);
+	
 	$userNameIn= $_POST["UsernameInput"];
 	$passwordIn=$_POST["PasswordInput"];
 	$DisplayNameIn=$_POST["DisplayNameInput"];
@@ -23,38 +30,14 @@ $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
     } else {
         echo "Sorry, there was an error uploading your file.";
     }
-	$user = "maks527";
-	$host = "localhost";
-	$db = "test";
-	$sql = "insert into test2
-(username,Password,DateOFBirth, DisplayName , IndOrBusnot, Gender, Email, City, State, Country, RelStatus, PubOrPri, profile_pic) values 
-('$userNameIn','$passwordIn','$DateofbirthIn','$DisplayNameIn','$indorbusIn','$genderIn','$emailIn','$cityIn','$stateIn','$countryIn','$relstatIn','$puborpriIn','$target_file')";
 	
-	mysql_connect($host, $user);
-	mysql_select_db($db);
+	$sql = "insert into UserInfo
+(Username,Password,DateOFBirth, DisplayName , IndOrBusnot, Gender, Email, City, State, Country, RelStatus, PubOrPri, ProfilePicture,UserorAdmin) values 
+('$userNameIn','$passwordIn','$DateofbirthIn','$DisplayNameIn','$indorbusIn','$genderIn','$emailIn','$cityIn','$stateIn','$countryIn','$relstatIn','$puborpriIn','$target_file','User')";
+	
+	
 	mysql_query($sql);
 	header( "Location: Welcome.php" )
-	//$row = mysql_fetch_array($result);
-
-//echo $row["username"];
 	
-	//$count = mysql_num_rows($result);
-	
-	//echo $count;
-	/*
-if ( $count == 1 )  {
-		
-		header( "Location: http://130.184.26.149:1080/~maks527/Mypage.php ");
-		
-	}
-	else
-	{ 
-		
-	 header( "Location: Welcome.php" );
-	}
-	
-	mysql_close();
-	
-	header( "Location: Welcome.php" )*/
 
 ?>

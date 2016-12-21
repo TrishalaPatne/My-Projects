@@ -6,14 +6,9 @@ session_start();
 	$pass="uateam03";
 	mysql_connect($host, $user, $pass);
 	mysql_select_db($db);
-	$MessageIdIn = $_GET["MessageId"];
-	
-
-	$username= "Niharika";
-	;
-	$sql = "delete from Messages where MessagesId=$MessageIdIn";
+	$UsernameIn = $_GET["UsernameInput"];
+	$sql = "delete from UserInfo where Username='$UsernameIn'";
 	mysql_query($sql);
 		mysql_close();
-	header( "Location:  MyWall.php" );
-	
+header( "Location: Admin.php" );
 ?>

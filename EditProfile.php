@@ -1,3 +1,7 @@
+<?php
+	session_start();
+	
+?>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -35,7 +39,6 @@
 		{
       margin-bottom: 50px;
 }
-
 
 ul.nav > li > a:hover {
 	background-color: #6A5ACD;
@@ -123,60 +126,60 @@ window.onload=rotaterall;
     <div class="col-sm-3 sidenav">
       <h3>My TweetBook</h3>
       <ul class="nav nav-pills nav-stacked">
-        <li class="hidden"><a href="#">Home</a></li>
-        <li class="hidden"><a href="ProfileInfo.php">Profile Info</a></li>
-        <li><a href="Welcome.php">Login Page</a></li>
-        <li><a href="AboutUs.php">About Us</a></li>
+        <li><a href="MyHomePage.php">Home</a></li>
+        <li><a href="ProfileInfo.php">Profile Info</a></li>
+        <li class="active"><a href="EditProfile.php">Edit Profile</a></li>
+        <li><a href="MyWall.php">My Wall</a></li>
       </ul><br>
+      <form method="get" action="./Pageview.php" enctype="multipart/form-data">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search Posts by username/DisplayName"/>
+        <input type="text" class="form-control" name="searchDisplayName" placeholder="Search Posts by username/DisplayName"/>
         <span class="input-group-btn">
-          <button class="btn btn-default" type="button">
+          <button class="btn btn-default" type="submit">
             <span class="glyphicon glyphicon-search"></span>
           </button>
         </span>
       </div>
-	  <br><h4>U of A Links</h4>
+	  </form>
+    <br><h4>U of A Links</h4>
 	   <ul class="nav nav-pills nav-stacked">
         <li><a href="http://www.uark.edu/">University of Arkansas</a></li>
         <li><a href="www.arkansasrazorbacks.com/">Razorback Athletics</a></li>
         <li><a href="https://uaconnect.uark.edu/">UAConnect</a></li>
         <li><a href="https://learn.uark.edu/">UARK Blackboard</a></li>
       </ul><br>
-	  </div>
+	</div>
   <div class="col-sm-6 bottompad">
-    <form  method="post" action="./Registration.php" enctype="multipart/form-data">	
-				<h3>Registration</h3>
+    <form  method="post" action="./EditProfileInfoHandel.php" enctype="multipart/form-data">	
+				<h1 align="center">Edit Profile</h1>
 				<br>
-			
-				<div class="form-group">
-					<label>Username</label>
-					<input type="text" name="UsernameInput" class="form-control" id="UsernameInput" value=""/>
-				</div>
-
+				<?php
+	$username=$_SESSION["username"];
+	$user = "uateam03";
+	$host = "localhost";
+	$db = "uateam03";
+	$pass="uateam03";
+	mysql_connect($host, $user, $pass);
+	mysql_select_db($db);
+	$sql = "Select Password,DisplayName,DateOfBirth,Gender,City,State,Country,Email,RelStatus,PubOrPri,IndOrBusnot from UserInfo where Username='$username'";
+	$result = mysql_query($sql);
+	$row = mysql_fetch_array($result);
+	?>
 				
-				<div class="form-group">
+   			    <div class="form-group">
 					<label>Password</label>
-					<input type="password" name="PasswordInput" class="form-control" id="" value=""/>
+					<input type="password" name="PasswordInput" class="form-control" id="" value="<?=$row["Password"]?>"/>
 				</div>
-
 				
 				<div class="form-group">
 					<label>Display Name</label>
-					<input type="text" name="DisplayNameInput" class="form-control" id="" value=""/>
+					<input type="text" name="DisplayNameInput" class="form-control" id="" value="<?=$row["DisplayName"]?>"/>
 				</div>
 				
 				<div class="form-group">
                 <label class="form-label">Date of Birth</label>  
-                <input id="Dateofbirth" class="form-control" type="date" name="DateofbirthInput"/>				
+                <input id="Dateofbirth" class="form-control" type="date" name="DateofbirthInput" value="<?=$row["DateOfBirth"]?>"/>				
                 </div>  
-							
-				<div class="form-group">
-					<label>Is this an individual account &nbsp; &nbsp;</label> 
-					<input type="radio" name="indorbusInput" value="Individual"/> 
-					<label>&nbsp; &nbsp; or a Business account &nbsp; &nbsp; </label>
-					<input type="radio" name="indorbusInput" value="Busiess"/>
-				</div>
 				
 				<div class="form-group">
 				<label>Do you wish your profile / tweets to be Public &nbsp; &nbsp; </label> 
@@ -184,21 +187,11 @@ window.onload=rotaterall;
 				<label>&nbsp; &nbsp; or Private &nbsp; &nbsp;  </label>
 				<input type="radio" name="puborpriInput" value="Private">
 				</div>
-			
-				
-				<div class="form-group">
-                 <label class="form-label" for="selectbasic">Gender</label>
-                    <select id="selectbasic" name="genderInput" class="form-control">
-					<option>Select</option>
-                        <option value="M">Male</option>
-                       <option value="F">Female</option>
-                        <option value="O">Other</option>
-                           </select>
-                 </div>
+		
 
                  <div class="form-group">
 					<label class="form-label" for="selectbasic">Relationship Status</label>
-                    <select id="selectbasic" name="relstatInput" class="form-control">
+                    <select id="selectbasic" name="relstatInput" class="form-control" value="<?=$row["RelStatus"]?>">
 					<option>Select</option>
                         <option value="Married">Married</option>
                        <option value="Commited">Commited</option>
@@ -208,22 +201,22 @@ window.onload=rotaterall;
 								
 				<div class="form-group">
 					<label>Email Address</label>
-					<input type="email" name="emailInput" class="form-control" id="" value=""/>
+					<input type="email" name="emailInput" class="form-control" id="" value="<?=$row["Email"]?>"/>
 				</div>
 				
 				<div class="form-group">
 					<label>City</label>
-					<input type="text" name="cityInput" class="form-control" id="" value=""/>
+					<input type="text" name="cityInput" class="form-control" id="" value="<?=$row["City"]?>"/>
 				</div>
 				
 				<div class="form-group">
 					<label>State</label>
-					<input type="text" name="stateInput" class="form-control" id="" value=""/>
+					<input type="text" name="stateInput" class="form-control" id="" value="<?=$row["State"]?>"/>
 				</div>
 
 				<div class="form-group">
                     <label class="form-label" for="selectbasic">Country</label>
-                        <select id="selectbasic" name="countryInput" class="form-control">
+                        <select id="selectbasic" name="countryInput" class="form-control"<?=$row["Country"]?>>
                             <option value="">Select a country</option>
                             <option value="AF">Afghanistan</option>
                             <option value="AL">Albania</option>
@@ -466,23 +459,23 @@ window.onload=rotaterall;
                             <option value="ZW">Zimbabwe</option>
                         </select>
 				</div>
-				<div>
-				<label class="form-label">Select Profile Picture</label>
-				<input type="file" name="fileToUpload"/>
-				</div>
+<?
+mysql_close();
+?>
 				<br>
-				<div class="form-group" align="center">
-				<hr>
-				<label>By clicking on Register you agree to give UA Tweetbook the right to delete, edit or add to all posted messages. If a profile includes offensive information, or if an individual or business makes offensive posts, UATweetbook will immediately delete the entire profile.</label>
-				<hr>
-				<button type="submit" class="btn btn-primary">Register</button> 
+				<div class="form-group">
+				<button type="submit" class="btn btn-primary">Submit</button> 
 				</div>
 	 <div class="clearfix visible-lg"></div>
 	 </form>
 	  </div>
 	  
 	  <div class="col-sm-3 sidenav navbar-right">
-       <br>
+   <form method="get" action="./Logout.php" enctype="multipart/form-data">
+   <button type="submit" style="background-color: #00BFFF; float: right" class="btn btn-default btn-sm navbar-right">
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </button><br><br>
+	</form>
       <h4 class="dark-grey"><center>Support Local Fayetteville Businesses<center></h4><br>
 <center><layer id="placeholderlayer"></layer><div id="placeholderdiv"></div></center><br>
 <center><layer id="placeholderlayer2"></layer><div id="placeholderdiv2"></div></center><br>

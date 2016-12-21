@@ -1,5 +1,5 @@
 <?php
-
+	session_start();
 	$MessageIdIn = $_GET["MessageId"];
 	$MessageIn=$_GET["Message"];
 /*
@@ -26,17 +26,16 @@
 
 
 
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
- <title>MyPage</title>
+ <title>Edit Post</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
-		<script>
+  <script>
  jQuery(document).ready(function() {
   var sideHeight = jQuery('.row').height();
   jQuery('.content').css('height', sideHeight + 'px');
@@ -44,7 +43,7 @@
 </script>
   <style>
     /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
-    .row.content {min-height: 300px;} 
+    .row.content {min-height: 500px;} 
 	
     /* Set gray background color and 100% height */
     .sidenav {
@@ -153,54 +152,66 @@ window.onload=rotaterall;
     <div class="col-sm-3 sidenav">
       <h4>My TweetBook</h4>
       <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="Mypage.php">Home</a></li>
+        <li class="active"><a href="MyHomePage.php">Home</a></li>
         <li><a href="ProfileInfo.php">Profile Info</a></li>
         <li><a href="EditProfile.php">Edit Profile</a></li>
         <li><a href="MyWall.php">My Wall</a></li>
       </ul><br>
+   <form method="get" action="./Pageview.php" enctype="multipart/form-data">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search Posts by username/DisplayName">
+        <input type="text" class="form-control" name="searchDisplayName" placeholder="Search Posts by username/DisplayName"/>
         <span class="input-group-btn">
-          <button class="btn btn-default" type="button">
+          <button class="btn btn-default" type="submit">
             <span class="glyphicon glyphicon-search"></span>
           </button>
         </span>
       </div>
+	  </form>
+	  <br><h4>U of A Links</h4>
+	   <ul class="nav nav-pills nav-stacked">
+        <li><a href="http://www.uark.edu/">University of Arkansas</a></li>
+        <li><a href="www.arkansasrazorbacks.com/">Razorback Athletics</a></li>
+        <li><a href="https://uaconnect.uark.edu/">UAConnect</a></li>
+        <li><a href="https://learn.uark.edu/">UARK Blackboard</a></li>
+      </ul><br>
     </div>
 
     <div class="col-sm-6">
 	<br>
 	 <form role="form" method="get" action="editposthandle.php" enctype="multipart/form-data">
-        <div class="form-group" >
+        <div class="form-group">
           <textarea class="form-control"  name="messageText" value="<?= "$MessageIn" ?>" rows="3" required><?= "$MessageIn" ?></textarea>
-		  <input type="hidden" name="msgId" value="<?="$MessageIdIn"?>"/>
+		  <input type="hidden" name="msgId" value="<?= "$MessageIdIn" ?>" />
         </div>
         <button type="submit"  class="btn btn-success">Submit</button>
       </form>
 	  <br>
 	  <hr>
 	  <br>
-	  
+	</div>  
       
 	
 	
-   <div class="col-sm-3 sidenav navbar-right">
-   <div class="logout" style="float: right"><a href="#" class="btn btn-info btn-sm">
-          <span class="glyphicon glyphicon-log-out"></span> Log out </a></div><br><br>
+<div class="col-sm-3 sidenav navbar-right bottompad">
+   <form method="get" action="./Logout.php" enctype="multipart/form-data">
+   <button type="submit" style="background-color: #00BFFF; float: right" class="btn btn-default btn-sm navbar-right">
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </button><br><br>
+	</form>
       <h4 class="dark-grey"><center>Support Local Fayetteville Businesses<center></h4><br>
 <center><layer id="placeholderlayer"></layer><div id="placeholderdiv"></div></center><br>
 <center><layer id="placeholderlayer2"></layer><div id="placeholderdiv2"></div></center><br>
 <center><layer id="placeholderlayer3"></layer><div id="placeholderdiv3"></div></center>
       </div>
-    </div>
   </div>
 </div>
 
 
 
-
-<footer class="container-fluid">
-  <h4>UA TweetBook</h4>
+<footer class="navbar-default navbar-fixed-bottom" style="background-color: #555; color: white; padding: 15px;">
+  <div class="container-fluid">
+  <h4>UARKTweetBook.com</h4>
+  </div>
 </footer>
 
 </body>

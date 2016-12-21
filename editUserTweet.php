@@ -1,7 +1,12 @@
 <!DOCTYPE html>
+
+ <?php
+		
+	$username= $_GET["UsernameInput"]; 
+	?>
 <html lang="en">
 <head>
- <title>My Wall</title>
+ <title>Edit user Messages</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -19,7 +24,7 @@
 
   <style>
     /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
-    .row.content {min-height: 300px;} 
+    .row.content {min-height: 1500px;} 
 	
     /* Set gray background color and 100% height */
     .sidenav {
@@ -130,33 +135,13 @@ function rotater3() {
     current3 = (current3==items.length-1) ? 0 : current3 + 1; //increment or reset
     setTimeout("rotater3()",howOften3*1000);
 }
-function getResults() {	
-var messageText = document.getElementById("messageTextId").value;
-			x = new XMLHttpRequest();
-			
-			x.onreadystatechange = function() {
-				
-				//if finished...
-				if ( x.readyState == 4 && x.status == 200 ) {
-					document.getElementById("recentPost").innerHTML = x.responseText;
-				}
-			}
-			
-			var url = "?";
-			var url = "MyWallPhp.php?MessageInput=" + messageText;
-			x.open("GET", url , true);
-			x.send();
-			
-			
-			//document.getElementById("mainResults").innerHTML = "<h1>" + name + " - " + pass + "</h1>";
-		}
+
 		
 
 function rotaterall() {
 	rotater();
 	rotater2();
 	rotater3();
-	getResults();
 	}
 
 
@@ -173,12 +158,10 @@ window.onload=rotaterall;
     <div class="col-sm-3 sidenav">
       <h3>My TweetBook</h3>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="MyHomePage.php">Home</a></li>
-        <li><a href="ProfileInfo.php">Profile Info</a></li>
-        <li><a href="EditProfile.php">Edit Profile</a></li>
-        <li class="active"><a href="MyWall.php">My Wall</a></li>
+        <li><a href="Admin.php">Home</a></li>
+       
       </ul><br>
-      <form method="get" action="./Pageview.php" enctype="multipart/form-data">
+      <form method="get" action="./PageviewAdmin.php" enctype="multipart/form-data">
       <div class="input-group">
         <input type="text" class="form-control" name="searchDisplayName" placeholder="Search Posts by username/DisplayName"/>
         <span class="input-group-btn">
@@ -201,22 +184,38 @@ window.onload=rotaterall;
 	 <div class="table">
 	  <div class="middle">
 	<br>
-	 <form role="form" method="get" enctype="multipart/form-data">
-        <div class="form-group" >
-          <textarea class="form-control"  id="messageTextId" rows="3" required></textarea>
-        </div>
-        <button type="button" onclick="getResults()" class="btn btn-success">Submit</button>
-      </form>
-	  <br>
-	  <hr>
-	  <br>
 	  
       <h4><small>RECENT POSTS</small></h4>
       <hr>
-	  <div id="recentPost">
-	  &nbsp;
+	  <div>
+	<?php
+	$user = "uateam03";
+	$host = "localhost";
+	$db = "uateam03";
+	$pass="uateam03";
+	$sql = "select MessagesId,Message,Time from Messages where Username='$username' order by Time desc";
+	mysql_connect($host, $user, $pass);
+	mysql_select_db($db);
+	$result = mysql_query($sql);
+		while( $row = mysql_fetch_array($result) ) {
+	
+	echo "<h5>Post by ".$username. " on ". $row["Time"]. " </h5>";
+		
+			 echo $row["Message"] ;
+			 echo "<br/>";
+			?><a href="./editpostAdmin.php?MessageId=<?= $row["MessagesId"] ?> &Message=<?=$row["Message"]?>">Edit</a>
+			&nbsp;
+			<a href="./deletepostAdmin.php?MessageId=<?= $row["MessagesId"] ?>">Delete</a>
+			
+				<?php echo "<hr/>";
+				
+	}
+	
+	
+	mysql_close();
+	
+?>
 	  </div>
-	  <div class="clearfix visible-lg"></div>
 	 </div>
 	 </div>
 	 </div>
@@ -232,7 +231,6 @@ window.onload=rotaterall;
 <center><layer id="placeholderlayer"></layer><div id="placeholderdiv"></div></center><br>
 <center><layer id="placeholderlayer2"></layer><div id="placeholderdiv2"></div></center><br>
 <center><layer id="placeholderlayer3"></layer><div id="placeholderdiv3"></div></center>
-<div class="clearfix visible-lg"></div>
       </div>
     </div>
   </div>
